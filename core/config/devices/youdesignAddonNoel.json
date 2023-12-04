@@ -1,0 +1,43 @@
+{
+    "commands": [{
+                "name": "Musique ON",
+                "type": "action",
+                "subtype": "other",
+                "logicalId": "on_musique"
+            }, {
+                "name": "Musique OFF",
+                "type": "action",
+                "subtype": "other",
+                "logicalId": "off_musique"      
+            },	{
+                "name": "Musique",
+                "type": "info",
+                "subtype": "binary",
+                "logicalId": "musique",
+                "template": {
+                    "dashboard": "line",
+                    "mobile": "line"
+                }
+            },{
+                "name": "Neige ON",
+                "type": "action",
+                "subtype": "other",
+                "logicalId": "on_neige"
+            }, {
+                "name": "Neige OFF",
+                "type": "action",
+                "subtype": "other",
+                "logicalId": "off_neige"      
+            },	{
+                "name": "Neige",
+                "type": "info",
+                "subtype": "binary",
+                "logicalId": "neige",
+                "template": {
+                    "dashboard": "line",
+                    "mobile": "line"
+                }
+            }
+        
+        ]
+}

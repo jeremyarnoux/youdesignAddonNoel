@@ -1,0 +1,60 @@
+<div class="eqLogic eqLogic-widget allowResize WoMeter" style="width: #width#;height: #height#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" data-eqType="#eqType#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" >
+	<center class="widget-name">
+		<span class="warning" title="#alert_name#">
+			<i class='#alert_icon#'></i>
+		</span>
+		<span class="cmd refresh pull-right cursor" data-cmd_id="#refresh_id#">
+			<i class="fas fa-sync"></i>
+		</span>
+		<span class="reportModeVisible">#name_display# <span class="object_name">#object_name#</span></span>
+		<a href="#eqLink#" class="reportModeHidden">#name_display# <span class="object_name">#object_name#</span></a>
+	</center>
+	<div class="switchbotcloud" style="position:relative">
+    <center>   
+		 <img src="/plugins/switchbotcloud/core/config/icones/WoMeter_widget.png" height="200" width="200" >
+ 	</center>
+	<span class="intNumTemp fontDigital">#intNumTemp#</span>
+	<span class="humidity fontDigital">#humidity#</span>
+	<span class="decNumTemp fontDigital">#decNumTemp#</span>
+	</div>
+	<style>
+    @font-face {
+      font-family: "Digital-7";
+      src:  url("/core/template/dashboard/cmd.info.numeric.HygroThermographe/font/digital-7.eot?") format("eot"),
+      url("/core/template/dashboard/cmd.info.numeric.HygroThermographe/font/digital-7.woff") format("woff"),
+      url("/core/template/dashboard/cmd.info.numeric.HygroThermographe/font/digital-7.ttf") format("truetype"),
+      url("/core/template/dashboard/cmd.info.numeric.HygroThermographe/font/digital-7.svg#Digital-7") format("svg");
+      font-weight:normal;
+      font-style:normal;
+    }
+    .switchbotcloud span.fontDigital{
+      font-family: "Digital-7";
+      position: absolute;
+      color: 	#454745;
+    }
+		
+    .switchbotcloud span.intNumTemp {
+		font-size: 71px;
+		letter-spacing: 3px;
+		top: 31px;
+		left: 71px;
+    }
+		
+    .switchbotcloud span.humidity {
+		font-size: 71px;
+		letter-spacing: 3px;
+		top: 93px;
+		left: 71px;
+    }
+		
+    .switchbotcloud span.decNumTemp {
+		font-size: 36px;
+		top: 67px;
+		left: 146px;
+		color: #525453;
+    }		
+		
+		
+		
+	</style>
+ </div>

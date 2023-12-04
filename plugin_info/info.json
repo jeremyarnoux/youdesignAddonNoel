@@ -1,0 +1,16 @@
+{
+	"id" : "youdesignAddonNoel",
+	"name" : "Youdesign Addon Noel",
+	"description" : "Plugin permettant d'afficher des flocons de neiges et de diffuser un musique de fond",
+	"licence" : "AGPL",
+	"author" : "jeremyarnoux",
+	"require" : "4.2",
+	"category" : "programming",
+	"hasDependency" : 0,
+	"changelog" : "https://youdom.net/plugin-youdesign-addon-noel-changelog/",
+	"changelog_beta" : "https://youdom.net/plugin-youdesign-addon-noel-changelog/",
+	"documentation" : "https://youdom.net/plugin-youdesign-addon-noel-documentation/",
+	"documentation_beta" : "https://youdom.net/plugin-youdesign-addon-noel-documentation/",
+	"language" : ["fr_FR","en_US"],
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","v4","atlas","luna"]
+}

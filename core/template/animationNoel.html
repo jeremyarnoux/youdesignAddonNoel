@@ -1,0 +1,139 @@
+<div class="eqLogic eqLogic-widget allowResize WoMeter" style="width: 0px;height: 0px;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" data-eqType="#eqType#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" >
+	
+	
+ </div>
+<script>
+	jeedom.cmd.update['#id_cmd_info#'] = function(_options){
+	console.log(_options.display_value)
+	}
+function enableChristmasMode() {
+
+
+	try {
+		if(#musique#=='1'){ console.log('musique 1 play()');
+			document.getElementById('playerNoel').play(); 
+		}else{ console.log('musique 0 stop()');
+			document.getElementById('playerNoel').pause();
+		}
+	} catch (e){
+		playerNoel();
+		//if(#musique#=='1'){playerNoel();}
+	}
+	try {
+		if(#neige#=='1'){ console.log('block');
+			document.getElementById('neigeCanvas').style.display='block'; 
+		}else{ console.log('none');
+			document.getElementById('neigeCanvas').style.display='none';
+		}
+	} catch (e){
+		initSnow();
+		if(#musique#=='1') document.getElementById('playerNoel').play(); 
+	}
+}
+function playerNoel(){
+	let audioPlayer = document.createElement("audio");
+	audioPlayer.id="playerNoel";
+	audioPlayer.loop = true;
+	audioPlayer.src = "#lienMusique#";
+	audioPlayer.type = 'audio/mpeg';
+	//audioPlayer.autoplay = true;
+	audioPlayer.style = "display:none;";
+
+  document.body.appendChild(audioPlayer);
+}	
+
+function initSnow() {
+  var canvas = document.createElement('canvas');
+  canvas.id='neigeCanvas';
+  canvas.style = `
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100vw;
+  height:100vh;
+  z-index:50;
+  pointer-events:none;
+  `;
+
+  document.body.appendChild(canvas);
+
+  let ctx = canvas.getContext('2d');
+  let windowW;
+  let windowH;
+  let numFlakes = 242;
+  let flakes = [];
+
+  
+  function Flake(x, y) {
+    let maxWeight = 4;
+    let maxSpeed = 4;
+
+    this.initialX = x;
+    this.x = x;
+    this.y = y;
+    this.horizontalMovement = randomBetween(-1, 1);
+
+    this.weight = randomBetween(2, maxWeight);
+    this.alpha = (this.weight / maxWeight);
+    this.speed = this.alpha * maxSpeed;
+
+    this.update = function() {
+      this.x += this.horizontalMovement;
+      this.y += this.speed;
+      if (this.y >= windowH) {
+        this.y = -this.weight;
+        this.x = this.initialX;
+      }
+    }
+  }
+
+  scaleCanvas();
+  buildFlakes();
+  loop();
+
+  window.onresize = function () {
+    scaleCanvas();
+  }
+
+  function scaleCanvas() {
+    windowW = window.innerWidth;
+    windowH = window.innerHeight;
+    canvas.width = windowW;
+    canvas.height = windowH;
+  }
+
+  function buildFlakes() {
+    flakes = [];
+    for (let i = 0; i < numFlakes; i++) {
+      let x = randomBetween(0, windowW);
+      let y = randomBetween(0, windowH);
+      let flake = new Flake(x, y);
+      flakes.push(flake);
+    }
+  }
+
+  function loop() {
+    // clear canvas
+    ctx.clearRect(0, 0, windowW, windowH);
+
+    // draw flakes
+    for (let i = 0; i < flakes.length; i++) {
+      let flake = flakes[i];
+      flake.update();
+
+      ctx.beginPath();
+      ctx.arc(flake.x, flake.y, flake.weight, 0, 2 * Math.PI, false);
+      ctx.fillStyle = 'rgba(255, 255, 255, ' + flake.alpha + ')';
+      ctx.fill();
+    }
+    requestAnimationFrame(loop);
+  }
+}
+
+function randomBetween(min, max) {
+  return Math.random() * (max - min + 1) + min;
+}
+
+
+enableChristmasMode();
+</script>
