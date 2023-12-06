@@ -37,6 +37,20 @@
                     "dashboard": "line",
                     "mobile": "line"
                 }
+            }, {
+                "name": "Répétition musique",
+                "type": "action",
+                "subtype": "select",
+                "logicalId": "repetition_musique",
+                "configuration":{
+                    "listValue" : "0|pas de répétion;1|En boucle"
+                }
+            },	{
+                "name": "Répétition musique (info)",
+                "type": "info",
+                "subtype": "numeric",
+                "logicalId": "repetition_musique_info",
+                "isVisible": 0
             }
         
         ]

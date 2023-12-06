@@ -1,7 +1,7 @@
-<div class="eqLogic eqLogic-widget allowResize WoMeter" style="width: 0px;height: 0px;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" data-eqType="#eqType#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" >
+<div class="eqLogic eqLogic-widget allowResize " style="width: 0px;height: 0px;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" data-eqType="#eqType#" data-translate-category="#translate_category#" data-category="#category#" data-tags="#tags#" >
 	
 	
- </div>
+</div>
 <script>
 	jeedom.cmd.update['#id_cmd_info#'] = function(_options){
 	console.log(_options.display_value)
@@ -10,9 +10,10 @@ function enableChristmasMode() {
 
 
 	try {
-		if(#musique#=='1'){ console.log('musique 1 play()');
+		if(#musique#=='1'){ 
+      if(#repetition_musique# == '0') document.getElementById('playerNoel').loop=false; else document.getElementById('playerNoel').loop=true;
 			document.getElementById('playerNoel').play(); 
-		}else{ console.log('musique 0 stop()');
+		}else{ 
 			document.getElementById('playerNoel').pause();
 		}
 	} catch (e){
@@ -20,14 +21,14 @@ function enableChristmasMode() {
 		//if(#musique#=='1'){playerNoel();}
 	}
 	try {
-		if(#neige#=='1'){ console.log('block');
+		if(#neige#=='1'){ 
 			document.getElementById('neigeCanvas').style.display='block'; 
-		}else{ console.log('none');
+		}else{ 
 			document.getElementById('neigeCanvas').style.display='none';
 		}
 	} catch (e){
 		initSnow();
-		if(#musique#=='1') document.getElementById('playerNoel').play(); 
+		if(#neige#=='0') document.getElementById('neigeCanvas').style.display='none'; 
 	}
 }
 function playerNoel(){

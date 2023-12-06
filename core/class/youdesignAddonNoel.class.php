@@ -36,7 +36,7 @@ class youdesignAddonNoel extends eqLogic {
 
 	  // Fonction exécutée automatiquement après la création de l'équipement
 	  public function postInsert() {
-		
+		$this->checkAndUpdateCmd('repetition_musique_info', '0');
 	  }
 
 	  // Fonction exécutée automatiquement avant la mise à jour de l'équipement
@@ -153,7 +153,10 @@ class youdesignAddonNoel extends eqLogic {
 		$cmd = $this->getCmd(null, 'neige');
 		$neige = $cmd->execCmd();
 		$replace['#neige#'] = $neige;
-
+		$cmd = $this->getCmd(null, 'repetition_musique_info');
+		$repetition_musique_info = $cmd->execCmd();
+		$replace['#repetition_musique#'] = $repetition_musique_info;
+		
 		$replace['#lienMusique#'] = $this->getConfiguration('lienMusique');
 		//if($this->getConfiguration('musique')) $replace['#musique#'] = 'true'; else $replace['#musique#'] = 'true';
 		//if($this->getConfiguration('neige')) $replace['#neige#'] = 'true'; else $replace['#neige#'] = 'true';
@@ -221,6 +224,8 @@ class youdesignAddonNoelCmd extends cmd {
 							break;
 
 			case 'off_neige': $eqTest->checkAndUpdateCmd('neige', '0');$eqTest->refreshWidget();
+							break;
+			case 'repetition_musique': $eqTest->checkAndUpdateCmd('repetition_musique_info', $_options['select']);$eqTest->refreshWidget();
 							break;
 
 		}

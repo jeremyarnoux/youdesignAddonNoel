@@ -167,12 +167,12 @@ function addCmdToTable(_cmd) {
   tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="invertBinary"/>{{Inverser}}</label></span> ';
   tr += '</td>';
   if(typeof _cmd.state != 'undefined'){
-  tr += '<td>';
-  tr += _cmd.state+_cmd.unite;
-  tr += '</td>';
-  }else{
-  tr += '<td>';
-  tr += '</td>';	  
+	tr += '<td class="value" data-key="value" >';
+	tr += _cmd.state+_cmd.unite;
+	tr += '</td>';
+	}else{
+	tr += '<td>';
+	tr += '</td>';	  
   }  
   tr += '<td style="width:125px">';
   if (is_numeric(_cmd.id)) {
@@ -195,6 +195,12 @@ function addCmdToTable(_cmd) {
       jeedom.cmd.changeType(tr, init(_cmd.subType));
     }
   });
+  if (init(_cmd.type) == 'info') {
+	jeedom.cmd.update[_cmd.id] = function(_options) {
+		$('.cmd[data-cmd_id=' + _cmd.id + '] .value[data-key=value]')[0].innerHTML=_options.value+_options.unit;
+		console.log(_options)
+	}
+  }
 }
 var ancre= window.location.hash.replace('#','');
 if(ancre=='commandtab'){
