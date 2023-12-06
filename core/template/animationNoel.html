@@ -3,15 +3,29 @@
 	
 </div>
 <script>
-	jeedom.cmd.update['#id_cmd_info#'] = function(_options){
-	console.log(_options.display_value)
+	jeedom.cmd.update['#id_cmd_info_neige#'] = function(_options){
+	if(_options.display_value==1){ 
+			document.getElementById('neigeCanvas').style.display='block'; 
+		}else{ 
+			document.getElementById('neigeCanvas').style.display='none';
+		}
 	}
+	jeedom.cmd.update['#id_cmd_info_musique#'] = function(_options){
+	if(_options.display_value==1){ 
+			document.getElementById('playerNoel').play(); 
+		}else{ 
+			document.getElementById('playerNoel').pause();
+		}
+	}
+	jeedom.cmd.update['#id_cmd_info_repetition#'] = function(_options){
+      if(_options.display_value == 0) document.getElementById('playerNoel').loop=false; else document.getElementById('playerNoel').loop=true;
+	}	
 function enableChristmasMode() {
 
 
 	try {
-		if(#musique#=='1'){ 
-      if(#repetition_musique# == '0') document.getElementById('playerNoel').loop=false; else document.getElementById('playerNoel').loop=true;
+		if(#musique#==1){ 
+      if(#repetition_musique# == 0) document.getElementById('playerNoel').loop=false; else document.getElementById('playerNoel').loop=true;
 			document.getElementById('playerNoel').play(); 
 		}else{ 
 			document.getElementById('playerNoel').pause();
@@ -21,23 +35,23 @@ function enableChristmasMode() {
 		//if(#musique#=='1'){playerNoel();}
 	}
 	try {
-		if(#neige#=='1'){ 
+		if(#neige#==1){ 
 			document.getElementById('neigeCanvas').style.display='block'; 
 		}else{ 
 			document.getElementById('neigeCanvas').style.display='none';
 		}
 	} catch (e){
 		initSnow();
-		if(#neige#=='0') document.getElementById('neigeCanvas').style.display='none'; 
+		if(#neige#==0) document.getElementById('neigeCanvas').style.display='none'; 
 	}
 }
 function playerNoel(){
 	let audioPlayer = document.createElement("audio");
 	audioPlayer.id="playerNoel";
-	audioPlayer.loop = true;
+	if(#repetition_musique# == 0) audioPlayer.loop = false; else audioPlayer.loop = true;
 	audioPlayer.src = "#lienMusique#";
 	audioPlayer.type = 'audio/mpeg';
-	//audioPlayer.autoplay = true;
+	if(#musique#==1) audioPlayer.autoplay = true; else audioPlayer.autoplay = false;
 	audioPlayer.style = "display:none;";
 
   document.body.appendChild(audioPlayer);

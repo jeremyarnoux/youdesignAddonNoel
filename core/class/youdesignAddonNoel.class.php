@@ -145,13 +145,16 @@ class youdesignAddonNoel extends eqLogic {
 			return $replace;
 		}
 		$cmd = $this->getCmd(null, 'musique');
+		$replace['#id_cmd_info_musique#'] = $cmd->getId();
 		$musique = $cmd->execCmd();
 		$replace['#musique#'] = $musique;
 		log::add('youdesignAddonNoel', 'debug', 'musique: '.$musique);
 		$cmd = $this->getCmd(null, 'neige');
+		$replace['#id_cmd_info_neige#'] = $cmd->getId();
 		$neige = $cmd->execCmd();
 		$replace['#neige#'] = $neige;
 		$cmd = $this->getCmd(null, 'repetition_musique_info');
+		$replace['#id_cmd_info_repetition#'] = $cmd->getId();
 		$repetition_musique_info = $cmd->execCmd();
 		$replace['#repetition_musique#'] = $repetition_musique_info;
 		
