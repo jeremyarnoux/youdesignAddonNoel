@@ -31,12 +31,10 @@ class youdesignAddonNoel extends eqLogic {
 	
 	  // Fonction exécutée automatiquement avant la création de l'équipement
 	  public function preInsert() {
-		$this->setConfiguration('lienMusique','/plugins/youdesignAddonNoel/core/template/Christmas%20Village%20-%20Aaron%20Kenny.mp3');
 	  }
 
 	  // Fonction exécutée automatiquement après la création de l'équipement
 	  public function postInsert() {
-		$this->checkAndUpdateCmd('repetition_musique_info', '0');
 	  }
 
 	  // Fonction exécutée automatiquement avant la mise à jour de l'équipement
@@ -89,6 +87,8 @@ class youdesignAddonNoel extends eqLogic {
     public function preSave() {
     }
 	public function postSave() {
+
+		$this->setConfiguration('lienMusique','/plugins/youdesignAddonNoel/core/template/Christmas%20Village%20-%20Aaron%20Kenny.mp3');
 		//$eq = $this->getEqlogic();
 		$content = file_get_contents(__DIR__ . '/../config/devices/youdesignAddonNoel.json');
 		if (!is_json($content)) {
@@ -126,21 +126,19 @@ class youdesignAddonNoel extends eqLogic {
 				log::add('youdesignAddonNoel', 'debug', 'mise à jour de la commande action ('.$cmdAction_logicalId.') avec value: '.$cmdInfo_value,true);
 			}
 		}
-		
-		//$refresh = $this->getCmd(null, 'refresh');
-		 /* if (!is_object($refresh)) {
-			//$refresh = new vdmCmd();
-			$refresh->setName(__('Rafraichir', __FILE__));
-		  }
-		  $refresh->setEqLogic_id($this->getId());
-		  $refresh->setLogicalId('refresh');
-		  $refresh->setType('action');
-		  $refresh->setSubType('other');
-		  $refresh->save();*/
+		//$this->setIsEnable();  
+		//log::add('youdesignAddonNoel','debug', 'postInsert: '.print_r($this,true));
+		$cmd = $this->getCmd(null, 'repetition_musique_info');
+		$repetition_musique_info = $cmd->execCmd();
+		if($repetition_musique_info==''){
+			$this->checkAndUpdateCmd('repetition_musique_info', '0');
+			$this->checkAndUpdateCmd('musique', '0');
+			$this->checkAndUpdateCmd('neige', '0');
+		}	
 	}
 
 	public function toHtml($_version = 'dashboard') {
-		//$eqLogic->emptyCacheWidget();
+		$this->emptyCacheWidget();
 		log::add('youdesignAddonNoel', 'debug', 'tohtml');
 		$replace = $this->preToHtml($_version);
 		if (!is_array($replace)) {

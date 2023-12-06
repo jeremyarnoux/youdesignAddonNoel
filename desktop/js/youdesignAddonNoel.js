@@ -75,7 +75,7 @@ $('.eqLogicAction[data-action=addEquipment]').off('click').on('click', function 
 					if (document.location.toString().match('#')) {
 						url += '#' + document.location.toString().split('#')[1];
 					} 
-					loadPage(url);
+					jeedomUtils.loadPage(url);
 					modifyWithoutSave = false;
 				}
 			});			  
