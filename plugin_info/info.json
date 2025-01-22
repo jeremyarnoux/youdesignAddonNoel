@@ -7,10 +7,10 @@
 	"require" : "4.2",
 	"category" : "programming",
 	"hasDependency" : 0,
-	"changelog" : "https://youdom.net/plugin-youdesign-addon-noel-changelog/",
-	"changelog_beta" : "https://youdom.net/plugin-youdesign-addon-noel-changelog/",
-	"documentation" : "https://youdom.net/plugin-youdesign-addon-noel-documentation/",
-	"documentation_beta" : "https://youdom.net/plugin-youdesign-addon-noel-documentation/",
+	"changelog" : "",
+	"changelog_beta" : "",
+	"documentation" : "",
+	"documentation_beta" : "",
 	"language" : ["fr_FR","en_US"],
 	"compatibility" : ["miniplus","smart","rpi","docker","diy","v4","atlas","luna"]
 }
